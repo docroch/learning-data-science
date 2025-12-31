@@ -2,7 +2,9 @@
 Includes examples and docs for learning datascience
 
 ## About
-As you know, I am a junior data scientist and I am learning this field. In this repository, I have included documents and examples from different parts of the data science field.
+In this repository, I have included documents and examples from different parts of the data science field.
+
+This tutorial is based on CRISP.
 
 You can clone this repository and use this.
 
