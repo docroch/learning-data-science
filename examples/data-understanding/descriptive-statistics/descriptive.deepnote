@@ -1,0 +1,1258 @@
+metadata:
+  createdAt: 2026-01-03T17:15:01.409Z
+  modifiedAt: '2026-01-03T17:16:31.083Z'
+project:
+  id: 2228a7f0-badb-4af1-994a-ab146f587736
+  integrations: []
+  name: descriptive
+  notebooks:
+    - blocks:
+        - blockGroup: aff688e5-2439-4f0b-8d13-beaab27db843
+          content: '# Descriptive'
+          id: 8c4ba210-f0ae-4961-a3e2-ca49f76c312c
+          metadata: {}
+          sortingKey: '0'
+          type: markdown
+        - blockGroup: c988488e-dbb4-446b-bc70-7da956ce9e10
+          content: |-
+            import pandas as pd
+            import numpy as np
+            from scipy import stats
+            import os
+          id: bd018234-7125-4c0a-b15e-739a6447e6dc
+          metadata: {}
+          sortingKey: '1'
+          type: code
+          executionCount: 1
+          outputs: []
+        - blockGroup: bc7f35ae-ce52-48a4-8f99-083231fe9cb4
+          content: |-
+            dataset = os.path.join('datasets','flights.csv')
+            df = pd.read_csv(dataset)
+            df
+          id: d28e7310-6592-4be0-85a5-2270ad64bdd4
+          metadata: {}
+          sortingKey: '2'
+          type: code
+          executionCount: 2
+          outputs:
+            - data:
+                text/html: |-
+                  <div>
+                  ,<style scoped>
+                  ,    .dataframe tbody tr th:only-of-type {
+                  ,        vertical-align: middle;
+                  ,    }
+                  ,
+                  ,    .dataframe tbody tr th {
+                  ,        vertical-align: top;
+                  ,    }
+                  ,
+                  ,    .dataframe thead th {
+                  ,        text-align: right;
+                  ,    }
+                  ,</style>
+                  ,<table border="1" class="dataframe">
+                  ,  <thead>
+                  ,    <tr style="text-align: right;">
+                  ,      <th></th>
+                  ,      <th>id</th>
+                  ,      <th>year</th>
+                  ,      <th>month</th>
+                  ,      <th>day</th>
+                  ,      <th>dep_time</th>
+                  ,      <th>sched_dep_time</th>
+                  ,      <th>dep_delay</th>
+                  ,      <th>arr_time</th>
+                  ,      <th>sched_arr_time</th>
+                  ,      <th>arr_delay</th>
+                  ,      <th>...</th>
+                  ,      <th>flight</th>
+                  ,      <th>tailnum</th>
+                  ,      <th>origin</th>
+                  ,      <th>dest</th>
+                  ,      <th>air_time</th>
+                  ,      <th>distance</th>
+                  ,      <th>hour</th>
+                  ,      <th>minute</th>
+                  ,      <th>time_hour</th>
+                  ,      <th>name</th>
+                  ,    </tr>
+                  ,  </thead>
+                  ,  <tbody>
+                  ,    <tr>
+                  ,      <th>0</th>
+                  ,      <td>0</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>517.0</td>
+                  ,      <td>515</td>
+                  ,      <td>2.0</td>
+                  ,      <td>830.0</td>
+                  ,      <td>819</td>
+                  ,      <td>11.0</td>
+                  ,      <td>...</td>
+                  ,      <td>1545</td>
+                  ,      <td>N14228</td>
+                  ,      <td>EWR</td>
+                  ,      <td>IAH</td>
+                  ,      <td>227.0</td>
+                  ,      <td>1400</td>
+                  ,      <td>5</td>
+                  ,      <td>15</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>United Air Lines Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>1</th>
+                  ,      <td>1</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>533.0</td>
+                  ,      <td>529</td>
+                  ,      <td>4.0</td>
+                  ,      <td>850.0</td>
+                  ,      <td>830</td>
+                  ,      <td>20.0</td>
+                  ,      <td>...</td>
+                  ,      <td>1714</td>
+                  ,      <td>N24211</td>
+                  ,      <td>LGA</td>
+                  ,      <td>IAH</td>
+                  ,      <td>227.0</td>
+                  ,      <td>1416</td>
+                  ,      <td>5</td>
+                  ,      <td>29</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>United Air Lines Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>2</th>
+                  ,      <td>2</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>542.0</td>
+                  ,      <td>540</td>
+                  ,      <td>2.0</td>
+                  ,      <td>923.0</td>
+                  ,      <td>850</td>
+                  ,      <td>33.0</td>
+                  ,      <td>...</td>
+                  ,      <td>1141</td>
+                  ,      <td>N619AA</td>
+                  ,      <td>JFK</td>
+                  ,      <td>MIA</td>
+                  ,      <td>160.0</td>
+                  ,      <td>1089</td>
+                  ,      <td>5</td>
+                  ,      <td>40</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>American Airlines Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>3</th>
+                  ,      <td>3</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>544.0</td>
+                  ,      <td>545</td>
+                  ,      <td>-1.0</td>
+                  ,      <td>1004.0</td>
+                  ,      <td>1022</td>
+                  ,      <td>-18.0</td>
+                  ,      <td>...</td>
+                  ,      <td>725</td>
+                  ,      <td>N804JB</td>
+                  ,      <td>JFK</td>
+                  ,      <td>BQN</td>
+                  ,      <td>183.0</td>
+                  ,      <td>1576</td>
+                  ,      <td>5</td>
+                  ,      <td>45</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>JetBlue Airways</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>4</th>
+                  ,      <td>4</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>554.0</td>
+                  ,      <td>600</td>
+                  ,      <td>-6.0</td>
+                  ,      <td>812.0</td>
+                  ,      <td>837</td>
+                  ,      <td>-25.0</td>
+                  ,      <td>...</td>
+                  ,      <td>461</td>
+                  ,      <td>N668DN</td>
+                  ,      <td>LGA</td>
+                  ,      <td>ATL</td>
+                  ,      <td>116.0</td>
+                  ,      <td>762</td>
+                  ,      <td>6</td>
+                  ,      <td>0</td>
+                  ,      <td>2013-01-01 06:00:00</td>
+                  ,      <td>Delta Air Lines Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>...</th>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336771</th>
+                  ,      <td>336771</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1455</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1634</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>3393</td>
+                  ,      <td>NaN</td>
+                  ,      <td>JFK</td>
+                  ,      <td>DCA</td>
+                  ,      <td>NaN</td>
+                  ,      <td>213</td>
+                  ,      <td>14</td>
+                  ,      <td>55</td>
+                  ,      <td>2013-09-30 14:00:00</td>
+                  ,      <td>Endeavor Air Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336772</th>
+                  ,      <td>336772</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>2200</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>2312</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>3525</td>
+                  ,      <td>NaN</td>
+                  ,      <td>LGA</td>
+                  ,      <td>SYR</td>
+                  ,      <td>NaN</td>
+                  ,      <td>198</td>
+                  ,      <td>22</td>
+                  ,      <td>0</td>
+                  ,      <td>2013-09-30 22:00:00</td>
+                  ,      <td>Endeavor Air Inc.</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336773</th>
+                  ,      <td>336773</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1210</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1330</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>3461</td>
+                  ,      <td>N535MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>BNA</td>
+                  ,      <td>NaN</td>
+                  ,      <td>764</td>
+                  ,      <td>12</td>
+                  ,      <td>10</td>
+                  ,      <td>2013-09-30 12:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336774</th>
+                  ,      <td>336774</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1159</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1344</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>3572</td>
+                  ,      <td>N511MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>CLE</td>
+                  ,      <td>NaN</td>
+                  ,      <td>419</td>
+                  ,      <td>11</td>
+                  ,      <td>59</td>
+                  ,      <td>2013-09-30 11:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336775</th>
+                  ,      <td>336775</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>840</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1020</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>3531</td>
+                  ,      <td>N839MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>RDU</td>
+                  ,      <td>NaN</td>
+                  ,      <td>431</td>
+                  ,      <td>8</td>
+                  ,      <td>40</td>
+                  ,      <td>2013-09-30 08:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,    </tr>
+                  ,  </tbody>
+                  ,</table>
+                  ,<p>336776 rows × 21 columns</p>
+                  ,</div>
+                text/plain: |2-
+                              id  year  month  day  dep_time  sched_dep_time  dep_delay  \
+                  ,0            0  2013      1    1     517.0             515        2.0   
+                  ,1            1  2013      1    1     533.0             529        4.0   
+                  ,2            2  2013      1    1     542.0             540        2.0   
+                  ,3            3  2013      1    1     544.0             545       -1.0   
+                  ,4            4  2013      1    1     554.0             600       -6.0   
+                  ,...        ...   ...    ...  ...       ...             ...        ...   
+                  ,336771  336771  2013      9   30       NaN            1455        NaN   
+                  ,336772  336772  2013      9   30       NaN            2200        NaN   
+                  ,336773  336773  2013      9   30       NaN            1210        NaN   
+                  ,336774  336774  2013      9   30       NaN            1159        NaN   
+                  ,336775  336775  2013      9   30       NaN             840        NaN   
+                  ,
+                  ,        arr_time  sched_arr_time  arr_delay  ...
+                  flight  tailnum origin dest  \
+                  ,0          830.0             819       11.0  ...   1545   N14228    EWR  IAH   
+                  ,1          850.0             830       20.0  ...   1714   N24211    LGA  IAH   
+                  ,2          923.0             850       33.0  ...   1141   N619AA    JFK  MIA   
+                  ,3         1004.0            1022      -18.0  ...    725   N804JB    JFK  BQN   
+                  ,4          812.0             837      -25.0  ...    461   N668DN    LGA  ATL   
+                  ,...          ...             ...        ...  ...    ...      ...    ...  ...   
+                  ,336771       NaN            1634        NaN  ...   3393      NaN    JFK  DCA   
+                  ,336772       NaN            2312        NaN  ...   3525      NaN    LGA  SYR   
+                  ,336773       NaN            1330        NaN  ...   3461   N535MQ    LGA  BNA   
+                  ,336774       NaN            1344        NaN  ...   3572   N511MQ    LGA  CLE   
+                  ,336775       NaN            1020        NaN  ...   3531   N839MQ    LGA  RDU   
+                  ,
+                  ,       air_time  distance  hour  minute            time_hour  \
+                  ,0         227.0      1400     5      15  2013-01-01 05:00:00   
+                  ,1         227.0      1416     5      29  2013-01-01 05:00:00   
+                  ,2         160.0      1089     5      40  2013-01-01 05:00:00   
+                  ,3         183.0      1576     5      45  2013-01-01 05:00:00   
+                  ,4         116.0       762     6       0  2013-01-01 06:00:00   
+                  ,...         ...       ...   ...     ...                  ...   
+                  ,336771      NaN       213    14      55  2013-09-30 14:00:00   
+                  ,336772      NaN       198    22       0  2013-09-30 22:00:00   
+                  ,336773      NaN       764    12      10  2013-09-30 12:00:00   
+                  ,336774      NaN       419    11      59  2013-09-30 11:00:00   
+                  ,336775      NaN       431     8      40  2013-09-30 08:00:00   
+                  ,
+                  ,                          name  
+                  ,0        United Air Lines Inc.  
+                  ,1        United Air Lines Inc.  
+                  ,2       American Airlines Inc.  
+                  ,3              JetBlue Airways  
+                  ,4         Delta Air Lines Inc.  
+                  ,...                        ...  
+                  ,336771       Endeavor Air Inc.  
+                  ,336772       Endeavor Air Inc.  
+                  ,336773               Envoy Air  
+                  ,336774               Envoy Air  
+                  ,336775               Envoy Air  
+                  ,
+                  ,[336776 rows x 21 columns]
+              execution_count: 2
+              output_type: execute_result
+              metadata:
+                cellId: d28e7310-6592-4be0-85a5-2270ad64bdd4
+                cellIndex: 2
+        - blockGroup: b6eea42d-1549-4cf4-ad2a-67fb6f9214d9
+          content: 1. Mean
+          id: 05d701b6-883f-46b3-9ba9-314637a96475
+          metadata: {}
+          sortingKey: '3'
+          type: markdown
+        - blockGroup: 23f92b44-6098-4295-aaa9-726f5be4a71a
+          content: df["arr_delay"].mean()
+          id: 3e43b5e5-c2a5-4bbf-b4e5-7e263bcee109
+          metadata: {}
+          sortingKey: '4'
+          type: code
+          executionCount: 3
+          outputs:
+            - data:
+                text/plain: np.float64(6.89537675731489)
+              execution_count: 3
+              output_type: execute_result
+              metadata:
+                cellId: 3e43b5e5-c2a5-4bbf-b4e5-7e263bcee109
+                cellIndex: 4
+        - blockGroup: 8ecf8254-edae-4f8f-9d94-bd223535156c
+          content: stats.trim_mean(df["arr_delay"],0.1)
+          id: 29f94502-2f49-4a96-b9f5-958e6231792b
+          metadata: {}
+          sortingKey: '5'
+          type: code
+          executionCount: 4
+          outputs:
+            - data:
+                text/plain: np.float64(0.9612355338465307)
+              execution_count: 4
+              output_type: execute_result
+              metadata:
+                cellId: 29f94502-2f49-4a96-b9f5-958e6231792b
+                cellIndex: 5
+        - blockGroup: ba57e835-2707-4882-a2e1-50277e9a2998
+          content: df["arr_delay"].median()
+          id: 6b50d7c3-176c-49bd-8c9e-5a426d5bebac
+          metadata: {}
+          sortingKey: '6'
+          type: code
+          executionCount: 5
+          outputs:
+            - data:
+                text/plain: np.float64(-5.0)
+              execution_count: 5
+              output_type: execute_result
+              metadata:
+                cellId: 6b50d7c3-176c-49bd-8c9e-5a426d5bebac
+                cellIndex: 6
+        - blockGroup: 1a3bccf8-fb94-4ec0-83c7-1d1a51e3defe
+          content: df["arr_delay"].mode()
+          id: ca893e27-6dfa-4361-a855-08becdc2aea9
+          metadata: {}
+          sortingKey: '7'
+          type: code
+          executionCount: 6
+          outputs:
+            - data:
+                text/plain: |-
+                  0   -13.0
+                  ,Name: arr_delay, dtype: float64
+              execution_count: 6
+              output_type: execute_result
+              metadata:
+                cellId: ca893e27-6dfa-4361-a855-08becdc2aea9
+                cellIndex: 7
+        - blockGroup: d3b28058-58f9-4df5-afeb-00c81106fec6
+          content: 2. Variance
+          id: f0a765c2-9a85-4dac-9ee2-0430f2fd066c
+          metadata: {}
+          sortingKey: '8'
+          type: markdown
+        - blockGroup: 33b10b7b-7a45-44af-ba5e-daf5f9574293
+          content: df["arr_delay"].var()
+          id: 68557eaf-eceb-4d4b-9348-8b2fb3dbd88a
+          metadata: {}
+          sortingKey: '9'
+          type: code
+          executionCount: 7
+          outputs:
+            - data:
+                text/plain: np.float64(1992.13072710194)
+              execution_count: 7
+              output_type: execute_result
+              metadata:
+                cellId: 68557eaf-eceb-4d4b-9348-8b2fb3dbd88a
+                cellIndex: 9
+        - blockGroup: 2c383e8c-c733-4cb6-bc47-c84eb5bcf527
+          content: df["arr_delay"].hist(bins=200)
+          id: 38cef9b1-86ba-40c5-a563-e33d2a189fb7
+          metadata: {}
+          sortingKey: a
+          type: code
+          executionCount: 8
+          outputs:
+            - data:
+                text/plain: '<Axes: >'
+              execution_count: 8
+              output_type: execute_result
+              metadata:
+                cellId: 38cef9b1-86ba-40c5-a563-e33d2a189fb7
+                cellIndex: 10
+            - data:
+                image/png: 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XSNGjFCvXr104sQJrVixQps2bdL69evVuXNnjR8/XgUFBeratavcbreee+45eTweDRs2TJKUnZ2t9PR0jR07VgsWLJDP59MLL7ygvLw8J3w888wzev311/X888/rySef1MaNG/X++++ruLjhs5sKCgqUm5urzMxMDRkyRIsXL9apU6c0bty45iwHAABYrFkhp6qqSk888YS++uorde7cWbfeeqvWr1+v+++/X5K0aNEiRUdHa9SoUaqurpbX69Ubb7zhPD8mJkZr1qzRs88+K4/How4dOig3N1ezZ892atLS0lRcXKzJkydryZIl6tmzp9566y15vV6nZvTo0fr66681Y8YM+Xw+DR48WOvWrWt0MTIAAGi7mhVy3n777Sb3x8fHq7CwUIWFhZes6d27d6OXoy40fPhw7d69u8ma/Pz8y748BQAA2i4+uwoAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhxzIDZq5Xn2nFly8EAMByhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhBwAAWImQAwAArETIAQAAViLkAAAAKxFyAACAlQg5AADASoQcAABgJUIOAACwEiEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhBwAAWImQAwAArETIAQAAViLkAAAAKxFyAACAlQg5AADASoQcAABgJUIOAACwEiEHAABYiZADAACsRMgBAABWahfuBtC0PtOKw90CAAARiTM5AADASoQcAABgJUIOAACwEiEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVmhVy5s2bp+985zvq1KmTkpKSNHLkSB08eDCk5uzZs8rLy1O3bt3UsWNHjRo1SpWVlSE1hw8fVk5OjhISEpSUlKQpU6bo3LlzITWbNm3S7bffLpfLpb59+2r58uWN+iksLFSfPn0UHx+voUOHaseOHc1ZDgAAsFizQs7mzZuVl5enbdu2qaSkRIFAQNnZ2Tp16pRTM3nyZH300UdavXq1Nm/erCNHjuiRRx5x9tfW1ionJ0c1NTXaunWr3nnnHS1fvlwzZsxwag4dOqScnBzdc889qqio0KRJk/TUU09p/fr1Ts2qVatUUFCgl156SZ9++qkGDRokr9erqqqqa5kHAACwRLM+1mHdunUhj5cvX66kpCSVl5fr7rvv1vHjx/X2229rxYoVuvfeeyVJy5YtU//+/bVt2zYNGzZMGzZs0P79+/Wb3/xGycnJGjx4sObMmaOpU6dq5syZiouLU1FRkdLS0vTKK69Ikvr3769PPvlEixYtktfrlSQtXLhQEyZM0Lhx4yRJRUVFKi4u1tKlSzVt2rRrHgwAAIhs1/TZVcePH5ckde3aVZJUXl6uQCCgrKwsp6Zfv37q1auXysrKNGzYMJWVlWngwIFKTk52arxer5599lnt27dPt912m8rKykKOUV8zadIkSVJNTY3Ky8s1ffp0Z390dLSysrJUVlZ2yX6rq6tVXV3tPPb7/ZKkQCCgQCBwlVO4vlwx5srqok3If2/U9Vxv9etuq+s/H7MIYg5BzKEBswiK5Dlcac9XHXLq6uo0adIk3XnnnRowYIAkyefzKS4uTomJiSG1ycnJ8vl8Ts35Aad+f/2+pmr8fr/OnDmjb775RrW1tRetOXDgwCV7njdvnmbNmtVo+4YNG5SQkHAFq259C4Y0r35OZp0kae3atdehm8hRUlIS7hZuGMwiiDkEMYcGzCIoEudw+vTpK6q76pCTl5envXv36pNPPrnaQ7S66dOnq6CgwHns9/uVmpqq7Oxsud3uMHZ2aQNmrr98kYJncOZk1unFXdGqrovS3pne69zZjSkQCKikpET333+/YmNjw91OWDGLIOYQxBwaMIugSJ5D/Ssxl3NVISc/P19r1qzRli1b1LNnT2d7SkqKampqdOzYsZCzOZWVlUpJSXFqLrwLqv7uq/NrLrwjq7KyUm63W+3bt1dMTIxiYmIuWlN/jItxuVxyuVyNtsfGxt6w3+Dq2qjm1ddFqbo26oZdT2u5kb+nrY1ZBDGHIObQgFkEReIcrrTfZt1dZYxRfn6+PvjgA23cuFFpaWkh+zMyMhQbG6vS0lJn28GDB3X48GF5PB5Jksfj0Z49e0LugiopKZHb7VZ6erpTc/4x6mvqjxEXF6eMjIyQmrq6OpWWljo1AACgbWvWmZy8vDytWLFCv/zlL9WpUyfnGprOnTurffv26ty5s8aPH6+CggJ17dpVbrdbzz33nDwej4YNGyZJys7OVnp6usaOHasFCxbI5/PphRdeUF5ennOW5ZlnntHrr7+u559/Xk8++aQ2btyo999/X8XFxU4vBQUFys3NVWZmpoYMGaLFixfr1KlTzt1WAACgbWtWyHnzzTclScOHDw/ZvmzZMv3whz+UJC1atEjR0dEaNWqUqqur5fV69cYbbzi1MTExWrNmjZ599ll5PB516NBBubm5mj17tlOTlpam4uJiTZ48WUuWLFHPnj311ltvObePS9Lo0aP19ddfa8aMGfL5fBo8eLDWrVvX6GJkAADQNjUr5Bhz+duZ4+PjVVhYqMLCwkvW9O7d+7J3/wwfPly7d+9usiY/P1/5+fmX7QkAALQ9fHYVAACwEiEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcizVZ1qx+kwrDncbAACEDSEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhBwAAWImQAwAArETIAQAAViLkAAAAKxFyAACAlQg5luszrVh9phWHuw0AAFodIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhBwAAWImQAwAArETIAQAAViLkAAAAKxFyAACAlQg5AADASoQcAABgJUIOAACwEiEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFipXbgbwMX1mVYc7hYAAIhonMkBAABWanbI2bJlix566CH16NFDUVFR+vDDD0P2G2M0Y8YM3XTTTWrfvr2ysrL0xRdfhNQcPXpUY8aMkdvtVmJiosaPH6+TJ0+G1Hz++ef67ne/q/j4eKWmpmrBggWNelm9erX69eun+Ph4DRw4UGvXrm3ucgAAgKWaHXJOnTqlQYMGqbCw8KL7FyxYoFdffVVFRUXavn27OnToIK/Xq7Nnzzo1Y8aM0b59+1RSUqI1a9Zoy5Ytevrpp539fr9f2dnZ6t27t8rLy/Xyyy9r5syZ+ulPf+rUbN26VY8//rjGjx+v3bt3a+TIkRo5cqT27t3b3CW1CX2mFfMSGACgTWn2NTkjRozQiBEjLrrPGKPFixfrhRde0MMPPyxJ+u///m8lJyfrww8/1GOPPabf/e53WrdunXbu3KnMzExJ0muvvaYHH3xQ//Vf/6UePXrovffeU01NjZYuXaq4uDh9+9vfVkVFhRYuXOiEoSVLluiBBx7QlClTJElz5sxRSUmJXn/9dRUVFV3VMAAAgD1a9MLjQ4cOyefzKSsry9nWuXNnDR06VGVlZXrsscdUVlamxMREJ+BIUlZWlqKjo7V9+3Z9//vfV1lZme6++27FxcU5NV6vV//5n/+pb775Rl26dFFZWZkKCgpCvr7X62308tn5qqurVV1d7Tz2+/2SpEAgoEAgcK3Lb1GuGNO8+mgT8t9LudHW2dLq12f7Oq8EswhiDkHMoQGzCIrkOVxpzy0acnw+nyQpOTk5ZHtycrKzz+fzKSkpKbSJdu3UtWvXkJq0tLRGx6jf16VLF/l8via/zsXMmzdPs2bNarR9w4YNSkhIuJIltpoFQ67ueXMy65rc31auWyopKQl3CzcMZhHEHIKYQwNmERSJczh9+vQV1bWpW8inT58ecvbH7/crNTVV2dnZcrvdYeyssQEz1zer3hVtNCezTi/uilZ1XdQl6/bO9F5raze0QCCgkpIS3X///YqNjQ13O2HFLIKYQxBzaMAsgiJ5DvWvxFxOi4aclJQUSVJlZaVuuukmZ3tlZaUGDx7s1FRVVYU879y5czp69Kjz/JSUFFVWVobU1D++XE39/otxuVxyuVyNtsfGxt5w3+Dq2ksHlSafVxfV5HNvtHVeLzfi9zRcmEUQcwhiDg2YRVAkzuFK+23R98lJS0tTSkqKSktLnW1+v1/bt2+Xx+ORJHk8Hh07dkzl5eVOzcaNG1VXV6ehQ4c6NVu2bAl5za2kpES33HKLunTp4tSc/3Xqa+q/DgAAaNuaHXJOnjypiooKVVRUSApebFxRUaHDhw8rKipKkyZN0r//+7/rV7/6lfbs2aMnnnhCPXr00MiRIyVJ/fv31wMPPKAJEyZox44d+t///V/l5+frscceU48ePSRJ//RP/6S4uDiNHz9e+/bt06pVq7RkyZKQl5omTpyodevW6ZVXXtGBAwc0c+ZM7dq1S/n5+dc+FQAAEPGa/XLVrl27dM899ziP64NHbm6uli9frueff16nTp3S008/rWPHjumuu+7SunXrFB8f7zznvffeU35+vu677z5FR0dr1KhRevXVV539nTt31oYNG5SXl6eMjAx1795dM2bMCHkvnTvuuEMrVqzQCy+8oB/96Ee6+eab9eGHH2rAgAFXNQgAAGCXZoec4cOHy5hL36YcFRWl2bNna/bs2Zes6dq1q1asWNHk17n11lv129/+tsmaRx99VI8++mjTDQMAgDaJz64CAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKzUpj6FHFKfacXO3/84PyeMnQAAcH1xJgcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsBIhBwAAWImQAwAArETIAQAAViLkAAAAKxFyAACAlQg5bVifacUhn0oOAIBNCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFYi5AAAACsRcgAAgJUIOQAAwEqEHAAAYCVCDgAAsFK7cDeAUHyWFAAALYMzOeCDOgEAViLkwEHYAQDYhJADAACsRMgBAABWIuQAAAArcXcVGjn/upw/zs8JYycAAFw9zuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg6axBsEAgAiFSEHAABYiZADAACsRMgBAABWIuQAAAAr8Y7HuCIXu/iYd0MGANzIOJMDAACsRMjBVeP2cgDAjYyQg2tG2AEA3IgIOQAAwEpceHwDsOUsSP06uCAZAHAj4EwOAACwEiEHAABYiZer0OJ4Tx0AwI2AMzloFdyBBQBobYQctCrCDgCgtfByFcLi/KDDS1kAgOuBkIOwu/DMDqEHANASIj7kFBYW6uWXX5bP59OgQYP02muvaciQIeFuC9egqZezCEAAgCsV0SFn1apVKigoUFFRkYYOHarFixfL6/Xq4MGDSkpKCnd7l8W1Kc1HAAIAXKmIvvB44cKFmjBhgsaNG6f09HQVFRUpISFBS5cuDXdrCIM+04o1YOb6kMcESQBouyL2TE5NTY3Ky8s1ffp0Z1t0dLSysrJUVlZ20edUV1erurraeXz8+HFJ0tGjRxUIBK5vw+cZOq9UUssOv12d0enTdWoXiFZtXVQLHjmy1M9h8I9/oXb//xz6/r/3W+TY26ff1yLHaS2BQECnT5/WX//6V8XGxoa7nbBhDkHMoQGzCIrkOZw4cUKSZIxpsi5iQ85f/vIX1dbWKjk5OWR7cnKyDhw4cNHnzJs3T7NmzWq0PS0t7br02Nr+KdwN3CCu1xy6v3KdDgwAuConTpxQ586dL7k/YkPO1Zg+fboKCgqcx3V1dTp69Ki6deumqKjIPvvh9/uVmpqqL7/8Um63O9zthA1zaMAsgphDEHNowCyCInkOxhidOHFCPXr0aLIuYkNO9+7dFRMTo8rKypDtlZWVSklJuehzXC6XXC5XyLbExMTr1WJYuN3uiPuf9XpgDg2YRRBzCGIODZhFUKTOoakzOPUi9sLjuLg4ZWRkqLS01NlWV1en0tJSeTyeMHYGAABuBBF7JkeSCgoKlJubq8zMTA0ZMkSLFy/WqVOnNG7cuHC3BgAAwiyiQ87o0aP19ddfa8aMGfL5fBo8eLDWrVvX6GLktsDlcumll15q9HJcW8McGjCLIOYQxBwaMIugtjCHKHO5+68AAAAiUMRekwMAANAUQg4AALASIQcAAFiJkAMAAKxEyLFAYWGh+vTpo/j4eA0dOlQ7duwId0stat68efrOd76jTp06KSkpSSNHjtTBgwdDas6ePau8vDx169ZNHTt21KhRoxq9UeThw4eVk5OjhIQEJSUlacqUKTp37lxrLqVFzZ8/X1FRUZo0aZKzrS3N4c9//rP++Z//Wd26dVP79u01cOBA7dq1y9lvjNGMGTN00003qX379srKytIXX3wRcoyjR49qzJgxcrvdSkxM1Pjx43Xy5MnWXspVq62t1Ysvvqi0tDS1b99ef/d3f6c5c+aEfJ6PrXPYsmWLHnroIfXo0UNRUVH68MMPQ/a31Lo///xzffe731V8fLxSU1O1YMGC6720ZmlqDoFAQFOnTtXAgQPVoUMH9ejRQ0888YSOHDkScgwb5nBJBhFt5cqVJi4uzixdutTs27fPTJgwwSQmJprKyspwt9ZivF6vWbZsmdm7d6+pqKgwDz74oOnVq5c5efKkU/PMM8+Y1NRUU1paanbt2mWGDRtm7rjjDmf/uXPnzIABA0xWVpbZvXu3Wbt2renevbuZPn16OJZ0zXbs2GH69Oljbr31VjNx4kRne1uZw9GjR03v3r3ND3/4Q7N9+3bzhz/8waxfv9783//9n1Mzf/5807lzZ/Phhx+azz77zHzve98zaWlp5syZM07NAw88YAYNGmS2bdtmfvvb35q+ffuaxx9/PBxLuipz58413bp1M2vWrDGHDh0yq1evNh07djRLlixxamydw9q1a82Pf/xj84tf/MJIMh988EHI/pZY9/Hjx01ycrIZM2aM2bt3r/n5z39u2rdvb37yk5+01jIvq6k5HDt2zGRlZZlVq1aZAwcOmLKyMjNkyBCTkZERcgwb5nAphJwIN2TIEJOXl+c8rq2tNT169DDz5s0LY1fXV1VVlZFkNm/ebIwJ/iDHxsaa1atXOzW/+93vjCRTVlZmjAn+IoiOjjY+n8+pefPNN43b7TbV1dWtu4BrdOLECXPzzTebkpIS8w//8A9OyGlLc5g6daq56667Lrm/rq7OpKSkmJdfftnZduzYMeNyuczPf/5zY4wx+/fvN5LMzp07nZpf//rXJioqyvz5z3++fs23oJycHPPkk0+GbHvkkUfMmDFjjDFtZw4X/uPeUut+4403TJcuXUJ+NqZOnWpuueWW67yiq3OxsHehHTt2GEnmT3/6kzHGzjmcj5erIlhNTY3Ky8uVlZXlbIuOjlZWVpbKysrC2Nn1dfz4cUlS165dJUnl5eUKBAIhc+jXr5969erlzKGsrEwDBw4MeaNIr9crv9+vffv2tWL31y4vL085OTkh65Xa1hx+9atfKTMzU48++qiSkpJ022236Wc/+5mz/9ChQ/L5fCGz6Ny5s4YOHRoyi8TERGVmZjo1WVlZio6O1vbt21tvMdfgjjvuUGlpqX7/+99Lkj777DN98sknGjFihKS2M4cLtdS6y8rKdPfddysuLs6p8Xq9OnjwoL755ptWWk3LOn78uKKiopzPbbR9DhH9jsdt3V/+8hfV1tY2eofn5ORkHThwIExdXV91dXWaNGmS7rzzTg0YMECS5PP5FBcX1+jDVpOTk+Xz+Zyai82pfl+kWLlypT799FPt3Lmz0b62NIc//OEPevPNN1VQUKAf/ehH2rlzp/71X/9VcXFxys3NddZysbWeP4ukpKSQ/e3atVPXrl0jZhbTpk2T3+9Xv379FBMTo9raWs2dO1djxoyRpDYzhwu11Lp9Pp/S0tIaHaN+X5cuXa5L/9fL2bNnNXXqVD3++OPOB3LaPgdCDiJKXl6e9u7dq08++STcrbS6L7/8UhMnTlRJSYni4+PD3U5Y1dXVKTMzU//xH/8hSbrtttu0d+9eFRUVKTc3N8zdtZ73339f7733nlasWKFvf/vbqqio0KRJk9SjR482NQdcXiAQ0D/+4z/KGKM333wz3O20Gl6uimDdu3dXTExMo7tnKisrlZKSEqaurp/8/HytWbNGH3/8sXr27OlsT0lJUU1NjY4dOxZSf/4cUlJSLjqn+n2RoLy8XFVVVbr99tvVrl07tWvXTps3b9arr76qdu3aKTk5uU3MQZJuuukmpaenh2zr37+/Dh8+LKlhLU39bKSkpKiqqipk/7lz53T06NGImcWUKVM0bdo0PfbYYxo4cKDGjh2ryZMna968eZLazhwu1FLrtuXnpT7g/OlPf1JJSYlzFkeyfw6EnAgWFxenjIwMlZaWOtvq6upUWloqj8cTxs5aljFG+fn5+uCDD7Rx48ZGp00zMjIUGxsbMoeDBw/q8OHDzhw8Ho/27NkT8sNc/8N+4T+WN6r77rtPe/bsUUVFhfMnMzNTY8aMcf7eFuYgSXfeeWejtxH4/e9/r969e0uS0tLSlJKSEjILv9+v7du3h8zi2LFjKi8vd2o2btyouro6DR06tBVWce1Onz6t6OjQX+MxMTGqq6uT1HbmcKGWWrfH49GWLVsUCAScmpKSEt1yyy039Es056sPOF988YV+85vfqFu3biH7rZ9DuK98xrVZuXKlcblcZvny5Wb//v3m6aefNomJiSF3z0S6Z5991nTu3Nls2rTJfPXVV86f06dPOzXPPPOM6dWrl9m4caPZtWuX8Xg8xuPxOPvrb53Ozs42FRUVZt26deZv/uZvIu7W6Qudf3eVMW1nDjt27DDt2rUzc+fONV988YV57733TEJCgnn33Xedmvnz55vExETzy1/+0nz++efm4YcfvugtxLfddpvZvn27+eSTT8zNN998w986fb7c3FzzrW99y7mF/Be/+IXp3r27ef75550aW+dw4sQJs3v3brN7924jySxcuNDs3r3buWuoJdZ97Ngxk5ycbMaOHWv27t1rVq5caRISEm6oW6ebmkNNTY353ve+Z3r27GkqKipCfn+ef6eUDXO4FEKOBV577TXTq1cvExcXZ4YMGWK2bdsW7pZalKSL/lm2bJlTc+bMGfMv//IvpkuXLiYhIcF8//vfN1999VXIcf74xz+aESNGmPbt25vu3bubf/u3fzOBQKCVV9OyLgw5bWkOH330kRkwYIBxuVymX79+5qc//WnI/rq6OvPiiy+a5ORk43K5zH333WcOHjwYUvPXv/7VPP7446Zjx47G7XabcePGmRMnTrTmMq6J3+83EydONL169TLx8fHmb//2b82Pf/zjkH/AbJ3Dxx9/fNHfC7m5ucaYllv3Z599Zu666y7jcrnMt771LTN//vzWWuIVaWoOhw4duuTvz48//tg5hg1zuJQoY857a0wAAABLcE0OAACwEiEHAABYiZADAACsRMgBAABWIuQAAAArEXIAAICVCDkAAMBKhBwAAGAlQg4AALASIQcAAFiJkAMAAKxEyAEAAFb6/wC1UHMhWXW9XQAAAABJRU5ErkJggg==
+                text/plain: <Figure size 640x480 with 1 Axes>
+              execution_count: 0
+              output_type: execute_result
+              metadata:
+                cellId: 38cef9b1-86ba-40c5-a563-e33d2a189fb7
+                cellIndex: 10
+        - blockGroup: e572a3db-ae93-419e-8511-3d8020c36b4b
+          content: df["arr_delay"][df["arr_delay"] < 100].hist(bins=80)
+          id: 49fbfbe3-27c0-4526-9376-611d89180eaf
+          metadata: {}
+          sortingKey: b
+          type: code
+          executionCount: 9
+          outputs:
+            - data:
+                text/plain: '<Axes: >'
+              execution_count: 9
+              output_type: execute_result
+              metadata:
+                cellId: 49fbfbe3-27c0-4526-9376-611d89180eaf
+                cellIndex: 11
+            - data:
+                image/png: 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H+OzZ8+qd+/eWrJkSY3b582bpz/96U9aunSpdu3apauuukrp6en67rvv7DljxozR/v375XK5tHbtWm3btk3jx4/3XZEWjFBRUWG1b9/emjVrlj12+PBhS5K1Z8+ewBXmYwkJCdaiRYtq3f78889bkZGRVnl5uT02bdo0q0uXLg1QXcOYN2+elZiYaD827Tj379/fysrKsh+fP3/eiouLs+bMmRPAqvznxIkTliRr69at9thPfvIT69FHHw1cUT729NNPW717965x26lTp6zQ0FBr9erV9tgnn3xiSbIKCwsbqEL/e/TRR63OnTtblZWVlmWZd4wlWW+88Yb9uLKy0oqNjbXmz59vj506dcpyOp3WX//6V8uyLOvjjz+2JFnvv/++Ped///d/raCgIOuf//ynT+piJccQb731lr766qsaP+35zjvvVHR0tG677Ta99dZbAajOt+bOnau2bduqb9++mj9/vs6dO2dvKyws1IABA+RwOOyx9PR0HTx4UF9//XUgyvW506dPKyoqqtq4Cce5oqJCRUVFSk1NtceCg4OVmpqqwsLCAFbmP6dPn5akasd0xYoVateunXr06KGcnByVlZUFojyf+fTTTxUXF6drr71WY8aM0dGjRyVJRUVF8ng8Xse8a9eu6tixozHHvKKiQq+88ooefPBBry+DNu0YX+jw4cNyu91ex7V169ZKTk62j2thYaHatGnjdfYhNTVVwcHB2rVrl0/qaNKfeIz/89JLLyk9PV3XXHONPXb11VdrwYIF+vGPf6zg4GD9z//8j4YPH641a9bozjvvDGC1l+/Xv/61+vXrp6ioKO3YsUM5OTk6fvy4Fi5cKElyu91KTEz0ek7VJ2C73W5FRkY2eM2+dOjQIT377LP64x//aI+ZdJz//e9/6/z589U+tTwmJkYHDhwIUFX+U1lZqcmTJ+vHP/6xevToYY+PHj1aCQkJiouL0969ezVt2jQdPHhQr7/+egCrvXzJycnKy8tTly5ddPz4cc2cOVO333679u3bJ7fbLYfDUe3LkmNiYuR2uwNTsI+tWbNGp06d0v3332+PmXaMf6jq2NX0Z7lqm9vtVnR0tNf2Fi1aKCoqynfH3ifrQfCZadOmWZIu+vPJJ594Pecf//iHFRwcbP3tb3+75P7vu+8+67bbbvNX+Zflcnqu8tJLL1ktWrSwvvvuO8uyLGvIkCHW+PHjvebs37/fkmR9/PHHfu+lri6n5y+//NLq3LmzlZmZecn9N8bjXBf//Oc/LUnWjh07vManTp1q9e/fP0BV+c+ECROshIQE6x//+MdF5xUUFFiSrEOHDjVQZf719ddfWxEREdaLL75orVixwnI4HNXm3Hzzzdbjjz8egOp8Ly0tzfqP//iPi85p6sdYPzhd9e6771qSrGPHjnnNGzlypPXLX/7SsizL+t3vfmfdcMMN1fbVvn176/nnn/dJXazkNDKPPfaYV9qvybXXXuv1ePny5Wrbtm2d/q89OTnZvgCusbicnqskJyfr3LlzOnLkiLp06aLY2Nhqd2VUPY6NjfVJvb5Q356PHTumQYMG6dZbb63TRdSN8TjXRbt27RQSElLjMWxMx88XJk2aZF9oeeEKbE2Sk5Mlfb+S17lz54Yoz6/atGmjG264QYcOHdKQIUNUUVGhU6dOea3mmHLMv/jiC23atOmSKzSmHeOqY1dSUqIOHTrY4yUlJerTp48954c3FJw7d04nT5702bEn5DQy7du3V/v27es837IsLV++XGPHjlVoaOgl5xcXF3u94RqD+vZ8oeLiYgUHB9tLnikpKfrNb34jj8dj/z5cLpe6dOnSqE5V1afnf/7znxo0aJCSkpK0fPlyBQdf+lK6xnic68LhcCgpKUkFBQUaPny4pO9P6RQUFGjSpEmBLc5HLMvSI488ojfeeENbtmypdnq1JsXFxZLUJI9pTc6cOaPPPvtM9913n5KSkhQaGqqCggKNGDFCknTw4EEdPXpUKSkpAa70yi1fvlzR0dHKyMi46DzTjnFiYqJiY2NVUFBgh5rS0lLt2rVLEydOlPT939enTp1SUVGRfTfo5s2bVVlZaYe+K+aT9SAEzKZNm2o9nZOXl2etXLnS+uSTT6xPPvnE+t3vfmcFBwdby5YtC0ClV27Hjh3WokWLrOLiYuuzzz6zXnnlFat9+/bW2LFj7TmnTp2yYmJirPvuu8/at2+f9eqrr1rh4eHWX/7ylwBWfvm+/PJL67rrrrMGDx5sffnll9bx48ftnyqmHedXX33VcjqdVl5envXxxx9b48ePt9q0aWO53e5Al+YTEydOtFq3bm1t2bLF63iWlZVZlmVZhw4dsmbNmmXt3r3bOnz4sPXmm29a1157rTVgwIAAV375HnvsMWvLli3W4cOHrXfffddKTU212rVrZ504ccKyrO9P23Xs2NHavHmztXv3bislJcVKSUkJcNVX7vz581bHjh2tadOmeY2bcoy/+eYba8+ePdaePXssSdbChQutPXv2WF988YVlWZY1d+5cq02bNtabb75p7d271/r5z39uJSYmWt9++629j6FDh1p9+/a1du3aZW3fvt26/vrrrVGjRvmsRkJOEzdq1Cjr1ltvrXFbXl6e1a1bNys8PNyKiIiw+vfv73WbZlNTVFRkJScnW61bt7bCwsKsbt26Wb///e/t63GqfPjhh9Ztt91mOZ1O60c/+pE1d+7cAFV85ZYvX17rNTtVTDvOlmVZzz77rNWxY0fL4XBY/fv3t3bu3BnoknymtuO5fPlyy7Is6+jRo9aAAQOsqKgoy+l0Wtddd501depU6/Tp04Et/ArcfffdVocOHSyHw2H96Ec/su6++26va0++/fZb67/+67+syMhIKzw83PrFL37hFeSbqo0bN1qSrIMHD3qNm3KM//73v9f4Xh43bpxlWd/fRv7UU09ZMTExltPptAYPHlztd/HVV19Zo0aNsq6++morIiLCeuCBB6xvvvnGZzUGWZZl+WZNCAAAoPHgc3IAAICRCDkAAMBIhBwAAGAkQg4AADASIQcAABiJkAMAAIxEyAEAAEYi5AAAACMRcgAAgJEIOQAAwEiEHAAAYCRCDgAAMNL/B3olorxOqB1uAAAAAElFTkSuQmCC
+                text/plain: <Figure size 640x480 with 1 Axes>
+              execution_count: 0
+              output_type: execute_result
+              metadata:
+                cellId: 49fbfbe3-27c0-4526-9376-611d89180eaf
+                cellIndex: 11
+        - blockGroup: 0bf409d2-cb5c-46ae-8e29-9e4c10b7cbcf
+          content: 3. Skewness
+          id: b8efb7be-5df0-4a95-b2cc-5196dfb32ea8
+          metadata: {}
+          sortingKey: c
+          type: markdown
+        - blockGroup: d7c861e1-180d-4be7-9856-44ed17160f6a
+          content: df["arr_delay"].skew()
+          id: 734fbf24-c3f8-40ca-9310-711495c56714
+          metadata: {}
+          sortingKey: d
+          type: code
+          executionCount: 10
+          outputs:
+            - data:
+                text/plain: np.float64(3.7168174804571863)
+              execution_count: 10
+              output_type: execute_result
+              metadata:
+                cellId: 734fbf24-c3f8-40ca-9310-711495c56714
+                cellIndex: 13
+        - blockGroup: 515c8c3f-f1a7-4d18-a68b-da9de6ddfe21
+          content: 4. Kurtosis
+          id: 1cf68d20-9d9f-4622-a7b2-8e7adad8aea4
+          metadata: {}
+          sortingKey: e
+          type: markdown
+        - blockGroup: ba046c00-54f7-4015-a372-4373399f7bf4
+          content: df["arr_delay"].kurtosis()
+          id: a3d7e7d2-5d2a-4094-8109-559c16e0e248
+          metadata: {}
+          sortingKey: f
+          type: code
+          executionCount: 11
+          outputs:
+            - data:
+                text/plain: np.float64(29.233043998766775)
+              execution_count: 11
+              output_type: execute_result
+              metadata:
+                cellId: a3d7e7d2-5d2a-4094-8109-559c16e0e248
+                cellIndex: 15
+        - blockGroup: 39cf81fb-a0b9-433a-b33e-743ba9545cd4
+          content: df['distance_time'] = df['arr_time'] - df['dep_time']
+          id: b338c341-855f-4d83-835e-5c76805e441d
+          metadata: {}
+          sortingKey: g
+          type: code
+          executionCount: 12
+          outputs: []
+        - blockGroup: 2db55657-a72c-492f-a1aa-2e3d7ff8536b
+          content: df
+          id: a801bfe6-3d72-4d47-a15d-2581a5e1a576
+          metadata: {}
+          sortingKey: h
+          type: code
+          executionCount: 13
+          outputs:
+            - data:
+                text/html: |-
+                  <div>
+                  ,<style scoped>
+                  ,    .dataframe tbody tr th:only-of-type {
+                  ,        vertical-align: middle;
+                  ,    }
+                  ,
+                  ,    .dataframe tbody tr th {
+                  ,        vertical-align: top;
+                  ,    }
+                  ,
+                  ,    .dataframe thead th {
+                  ,        text-align: right;
+                  ,    }
+                  ,</style>
+                  ,<table border="1" class="dataframe">
+                  ,  <thead>
+                  ,    <tr style="text-align: right;">
+                  ,      <th></th>
+                  ,      <th>id</th>
+                  ,      <th>year</th>
+                  ,      <th>month</th>
+                  ,      <th>day</th>
+                  ,      <th>dep_time</th>
+                  ,      <th>sched_dep_time</th>
+                  ,      <th>dep_delay</th>
+                  ,      <th>arr_time</th>
+                  ,      <th>sched_arr_time</th>
+                  ,      <th>arr_delay</th>
+                  ,      <th>...</th>
+                  ,      <th>tailnum</th>
+                  ,      <th>origin</th>
+                  ,      <th>dest</th>
+                  ,      <th>air_time</th>
+                  ,      <th>distance</th>
+                  ,      <th>hour</th>
+                  ,      <th>minute</th>
+                  ,      <th>time_hour</th>
+                  ,      <th>name</th>
+                  ,      <th>distance_time</th>
+                  ,    </tr>
+                  ,  </thead>
+                  ,  <tbody>
+                  ,    <tr>
+                  ,      <th>0</th>
+                  ,      <td>0</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>517.0</td>
+                  ,      <td>515</td>
+                  ,      <td>2.0</td>
+                  ,      <td>830.0</td>
+                  ,      <td>819</td>
+                  ,      <td>11.0</td>
+                  ,      <td>...</td>
+                  ,      <td>N14228</td>
+                  ,      <td>EWR</td>
+                  ,      <td>IAH</td>
+                  ,      <td>227.0</td>
+                  ,      <td>1400</td>
+                  ,      <td>5</td>
+                  ,      <td>15</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>United Air Lines Inc.</td>
+                  ,      <td>313.0</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>1</th>
+                  ,      <td>1</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>533.0</td>
+                  ,      <td>529</td>
+                  ,      <td>4.0</td>
+                  ,      <td>850.0</td>
+                  ,      <td>830</td>
+                  ,      <td>20.0</td>
+                  ,      <td>...</td>
+                  ,      <td>N24211</td>
+                  ,      <td>LGA</td>
+                  ,      <td>IAH</td>
+                  ,      <td>227.0</td>
+                  ,      <td>1416</td>
+                  ,      <td>5</td>
+                  ,      <td>29</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>United Air Lines Inc.</td>
+                  ,      <td>317.0</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>2</th>
+                  ,      <td>2</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>542.0</td>
+                  ,      <td>540</td>
+                  ,      <td>2.0</td>
+                  ,      <td>923.0</td>
+                  ,      <td>850</td>
+                  ,      <td>33.0</td>
+                  ,      <td>...</td>
+                  ,      <td>N619AA</td>
+                  ,      <td>JFK</td>
+                  ,      <td>MIA</td>
+                  ,      <td>160.0</td>
+                  ,      <td>1089</td>
+                  ,      <td>5</td>
+                  ,      <td>40</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>American Airlines Inc.</td>
+                  ,      <td>381.0</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>3</th>
+                  ,      <td>3</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>544.0</td>
+                  ,      <td>545</td>
+                  ,      <td>-1.0</td>
+                  ,      <td>1004.0</td>
+                  ,      <td>1022</td>
+                  ,      <td>-18.0</td>
+                  ,      <td>...</td>
+                  ,      <td>N804JB</td>
+                  ,      <td>JFK</td>
+                  ,      <td>BQN</td>
+                  ,      <td>183.0</td>
+                  ,      <td>1576</td>
+                  ,      <td>5</td>
+                  ,      <td>45</td>
+                  ,      <td>2013-01-01 05:00:00</td>
+                  ,      <td>JetBlue Airways</td>
+                  ,      <td>460.0</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>4</th>
+                  ,      <td>4</td>
+                  ,      <td>2013</td>
+                  ,      <td>1</td>
+                  ,      <td>1</td>
+                  ,      <td>554.0</td>
+                  ,      <td>600</td>
+                  ,      <td>-6.0</td>
+                  ,      <td>812.0</td>
+                  ,      <td>837</td>
+                  ,      <td>-25.0</td>
+                  ,      <td>...</td>
+                  ,      <td>N668DN</td>
+                  ,      <td>LGA</td>
+                  ,      <td>ATL</td>
+                  ,      <td>116.0</td>
+                  ,      <td>762</td>
+                  ,      <td>6</td>
+                  ,      <td>0</td>
+                  ,      <td>2013-01-01 06:00:00</td>
+                  ,      <td>Delta Air Lines Inc.</td>
+                  ,      <td>258.0</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>...</th>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,      <td>...</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336771</th>
+                  ,      <td>336771</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1455</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1634</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>NaN</td>
+                  ,      <td>JFK</td>
+                  ,      <td>DCA</td>
+                  ,      <td>NaN</td>
+                  ,      <td>213</td>
+                  ,      <td>14</td>
+                  ,      <td>55</td>
+                  ,      <td>2013-09-30 14:00:00</td>
+                  ,      <td>Endeavor Air Inc.</td>
+                  ,      <td>NaN</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336772</th>
+                  ,      <td>336772</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>2200</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>2312</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>NaN</td>
+                  ,      <td>LGA</td>
+                  ,      <td>SYR</td>
+                  ,      <td>NaN</td>
+                  ,      <td>198</td>
+                  ,      <td>22</td>
+                  ,      <td>0</td>
+                  ,      <td>2013-09-30 22:00:00</td>
+                  ,      <td>Endeavor Air Inc.</td>
+                  ,      <td>NaN</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336773</th>
+                  ,      <td>336773</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1210</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1330</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>N535MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>BNA</td>
+                  ,      <td>NaN</td>
+                  ,      <td>764</td>
+                  ,      <td>12</td>
+                  ,      <td>10</td>
+                  ,      <td>2013-09-30 12:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,      <td>NaN</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336774</th>
+                  ,      <td>336774</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1159</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1344</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>N511MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>CLE</td>
+                  ,      <td>NaN</td>
+                  ,      <td>419</td>
+                  ,      <td>11</td>
+                  ,      <td>59</td>
+                  ,      <td>2013-09-30 11:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,      <td>NaN</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>336775</th>
+                  ,      <td>336775</td>
+                  ,      <td>2013</td>
+                  ,      <td>9</td>
+                  ,      <td>30</td>
+                  ,      <td>NaN</td>
+                  ,      <td>840</td>
+                  ,      <td>NaN</td>
+                  ,      <td>NaN</td>
+                  ,      <td>1020</td>
+                  ,      <td>NaN</td>
+                  ,      <td>...</td>
+                  ,      <td>N839MQ</td>
+                  ,      <td>LGA</td>
+                  ,      <td>RDU</td>
+                  ,      <td>NaN</td>
+                  ,      <td>431</td>
+                  ,      <td>8</td>
+                  ,      <td>40</td>
+                  ,      <td>2013-09-30 08:00:00</td>
+                  ,      <td>Envoy Air</td>
+                  ,      <td>NaN</td>
+                  ,    </tr>
+                  ,  </tbody>
+                  ,</table>
+                  ,<p>336776 rows × 22 columns</p>
+                  ,</div>
+                text/plain: |2-
+                              id  year  month  day  dep_time  sched_dep_time  dep_delay  \
+                  ,0            0  2013      1    1     517.0             515        2.0   
+                  ,1            1  2013      1    1     533.0             529        4.0   
+                  ,2            2  2013      1    1     542.0             540        2.0   
+                  ,3            3  2013      1    1     544.0             545       -1.0   
+                  ,4            4  2013      1    1     554.0             600       -6.0   
+                  ,...        ...   ...    ...  ...       ...             ...        ...   
+                  ,336771  336771  2013      9   30       NaN            1455        NaN   
+                  ,336772  336772  2013      9   30       NaN            2200        NaN   
+                  ,336773  336773  2013      9   30       NaN            1210        NaN   
+                  ,336774  336774  2013      9   30       NaN            1159        NaN   
+                  ,336775  336775  2013      9   30       NaN             840        NaN   
+                  ,
+                  ,        arr_time  sched_arr_time  arr_delay  ...
+                  tailnum  origin dest  \
+                  ,0          830.0             819       11.0  ...  N14228     EWR  IAH   
+                  ,1          850.0             830       20.0  ...  N24211     LGA  IAH   
+                  ,2          923.0             850       33.0  ...  N619AA     JFK  MIA   
+                  ,3         1004.0            1022      -18.0  ...  N804JB     JFK  BQN   
+                  ,4          812.0             837      -25.0  ...  N668DN     LGA  ATL   
+                  ,...          ...             ...        ...  ...     ...     ...  ...   
+                  ,336771       NaN            1634        NaN  ...     NaN     JFK  DCA   
+                  ,336772       NaN            2312        NaN  ...     NaN     LGA  SYR   
+                  ,336773       NaN            1330        NaN  ...  N535MQ     LGA  BNA   
+                  ,336774       NaN            1344        NaN  ...  N511MQ     LGA  CLE   
+                  ,336775       NaN            1020        NaN  ...  N839MQ     LGA  RDU   
+                  ,
+                  ,       air_time
+                  distance  hour  minute            time_hour  \
+                  ,0         227.0     1400     5      15  2013-01-01 05:00:00   
+                  ,1         227.0     1416     5      29  2013-01-01 05:00:00   
+                  ,2         160.0     1089     5      40  2013-01-01 05:00:00   
+                  ,3         183.0     1576     5      45  2013-01-01 05:00:00   
+                  ,4         116.0      762     6       0  2013-01-01 06:00:00   
+                  ,...         ...      ...   ...     ...                  ...   
+                  ,336771      NaN      213    14      55  2013-09-30 14:00:00   
+                  ,336772      NaN      198    22       0  2013-09-30 22:00:00   
+                  ,336773      NaN      764    12      10  2013-09-30 12:00:00   
+                  ,336774      NaN      419    11      59  2013-09-30 11:00:00   
+                  ,336775      NaN      431     8      40  2013-09-30 08:00:00   
+                  ,
+                  ,                          name distance_time  
+                  ,0        United Air Lines Inc.         313.0  
+                  ,1        United Air Lines Inc.         317.0  
+                  ,2       American Airlines Inc.         381.0  
+                  ,3              JetBlue Airways         460.0  
+                  ,4         Delta Air Lines Inc.         258.0  
+                  ,...                        ...           ...  
+                  ,336771       Endeavor Air Inc.           NaN  
+                  ,336772       Endeavor Air Inc.           NaN  
+                  ,336773               Envoy Air           NaN  
+                  ,336774               Envoy Air           NaN  
+                  ,336775               Envoy Air           NaN  
+                  ,
+                  ,[336776 rows x 22 columns]
+              execution_count: 13
+              output_type: execute_result
+              metadata:
+                cellId: a801bfe6-3d72-4d47-a15d-2581a5e1a576
+                cellIndex: 17
+        - blockGroup: 43a5ac9d-9bc3-463f-a7ff-4288f0e3e7c5
+          content: '- Corr'
+          id: f48aaa6c-ffa8-48da-a962-e62f06085127
+          metadata: {}
+          sortingKey: i
+          type: markdown
+        - blockGroup: 6c7957be-91a1-4eda-a2ec-029b60d068d2
+          content: df[["dep_time", 'sched_dep_time', 'dep_delay', 'arr_time', 'sched_arr_time', 'arr_delay', 'distance', 'distance_time']].corr()
+          id: 24547389-87ee-467c-854c-a333ae61707d
+          metadata: {}
+          sortingKey: j
+          type: code
+          executionCount: 14
+          outputs:
+            - data:
+                text/html: |-
+                  <div>
+                  ,<style scoped>
+                  ,    .dataframe tbody tr th:only-of-type {
+                  ,        vertical-align: middle;
+                  ,    }
+                  ,
+                  ,    .dataframe tbody tr th {
+                  ,        vertical-align: top;
+                  ,    }
+                  ,
+                  ,    .dataframe thead th {
+                  ,        text-align: right;
+                  ,    }
+                  ,</style>
+                  ,<table border="1" class="dataframe">
+                  ,  <thead>
+                  ,    <tr style="text-align: right;">
+                  ,      <th></th>
+                  ,      <th>dep_time</th>
+                  ,      <th>sched_dep_time</th>
+                  ,      <th>dep_delay</th>
+                  ,      <th>arr_time</th>
+                  ,      <th>sched_arr_time</th>
+                  ,      <th>arr_delay</th>
+                  ,      <th>distance</th>
+                  ,      <th>distance_time</th>
+                  ,    </tr>
+                  ,  </thead>
+                  ,  <tbody>
+                  ,    <tr>
+                  ,      <th>dep_time</th>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.954617</td>
+                  ,      <td>0.260231</td>
+                  ,      <td>0.660779</td>
+                  ,      <td>0.784682</td>
+                  ,      <td>0.232306</td>
+                  ,      <td>-0.013998</td>
+                  ,      <td>-0.321497</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>sched_dep_time</th>
+                  ,      <td>0.954617</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.198887</td>
+                  ,      <td>0.642680</td>
+                  ,      <td>0.783342</td>
+                  ,      <td>0.173896</td>
+                  ,      <td>-0.017995</td>
+                  ,      <td>-0.291982</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>dep_delay</th>
+                  ,      <td>0.260231</td>
+                  ,      <td>0.198887</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.028729</td>
+                  ,      <td>0.160488</td>
+                  ,      <td>0.914803</td>
+                  ,      <td>-0.021671</td>
+                  ,      <td>-0.263792</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>arr_time</th>
+                  ,      <td>0.660779</td>
+                  ,      <td>0.642680</td>
+                  ,      <td>0.028729</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.788997</td>
+                  ,      <td>0.024482</td>
+                  ,      <td>0.046991</td>
+                  ,      <td>0.498294</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>sched_arr_time</th>
+                  ,      <td>0.784682</td>
+                  ,      <td>0.783342</td>
+                  ,      <td>0.160488</td>
+                  ,      <td>0.788997</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.133261</td>
+                  ,      <td>0.068726</td>
+                  ,      <td>0.089099</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>arr_delay</th>
+                  ,      <td>0.232306</td>
+                  ,      <td>0.173896</td>
+                  ,      <td>0.914803</td>
+                  ,      <td>0.024482</td>
+                  ,      <td>0.133261</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>-0.061868</td>
+                  ,      <td>-0.238202</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>distance</th>
+                  ,      <td>-0.013998</td>
+                  ,      <td>-0.017995</td>
+                  ,      <td>-0.021671</td>
+                  ,      <td>0.046991</td>
+                  ,      <td>0.068726</td>
+                  ,      <td>-0.061868</td>
+                  ,      <td>1.000000</td>
+                  ,      <td>0.075403</td>
+                  ,    </tr>
+                  ,    <tr>
+                  ,      <th>distance_time</th>
+                  ,      <td>-0.321497</td>
+                  ,      <td>-0.291982</td>
+                  ,      <td>-0.263792</td>
+                  ,      <td>0.498294</td>
+                  ,      <td>0.089099</td>
+                  ,      <td>-0.238202</td>
+                  ,      <td>0.075403</td>
+                  ,      <td>1.000000</td>
+                  ,    </tr>
+                  ,  </tbody>
+                  ,</table>
+                  ,</div>
+                text/plain: |2-
+                                  dep_time  sched_dep_time  dep_delay  arr_time  sched_arr_time  \
+                  ,dep_time        1.000000        0.954617   0.260231  0.660779        0.784682   
+                  ,sched_dep_time  0.954617        1.000000   0.198887  0.642680        0.783342   
+                  ,dep_delay       0.260231        0.198887   1.000000  0.028729        0.160488   
+                  ,arr_time        0.660779        0.642680   0.028729  1.000000        0.788997   
+                  ,sched_arr_time  0.784682        0.783342   0.160488  0.788997        1.000000   
+                  ,arr_delay       0.232306        0.173896   0.914803  0.024482        0.133261   
+                  ,distance       -0.013998       -0.017995  -0.021671  0.046991        0.068726   
+                  ,distance_time  -0.321497       -0.291982  -0.263792  0.498294        0.089099   
+                  ,
+                  ,                arr_delay  distance  distance_time  
+                  ,dep_time         0.232306 -0.013998      -0.321497  
+                  ,sched_dep_time   0.173896 -0.017995      -0.291982  
+                  ,dep_delay        0.914803 -0.021671      -0.263792  
+                  ,arr_time         0.024482  0.046991       0.498294  
+                  ,sched_arr_time   0.133261  0.068726       0.089099  
+                  ,arr_delay        1.000000 -0.061868      -0.238202  
+                  ,distance        -0.061868  1.000000       0.075403  
+                  ,distance_time   -0.238202  0.075403       1.000000  
+              execution_count: 14
+              output_type: execute_result
+              metadata:
+                cellId: 24547389-87ee-467c-854c-a333ae61707d
+                cellIndex: 19
+        - blockGroup: 21cfead7-033a-49f4-bac7-5a991768d192
+          content: '- Three Sigma'
+          id: 1c6a8f10-29d4-46b7-8240-9a7a7e331442
+          metadata: {}
+          sortingKey: k
+          type: markdown
+        - blockGroup: 88b1ba8f-98fc-4207-80e3-4169e68bce7b
+          content: |-
+            a = (df["arr_delay"].mean()) - (2 * df["arr_delay"].std())
+            a
+          id: f1e9633d-19f6-4ad4-be2d-0684e96299fa
+          metadata: {}
+          sortingKey: l
+          type: code
+          executionCount: 15
+          outputs:
+            - data:
+                text/plain: np.float64(-82.37120662307309)
+              execution_count: 15
+              output_type: execute_result
+              metadata:
+                cellId: f1e9633d-19f6-4ad4-be2d-0684e96299fa
+                cellIndex: 21
+        - blockGroup: 0c6d6b4c-1103-485b-96db-e4c78f6b07af
+          content: |-
+            b = (df["arr_delay"].mean()) + (2 * df["arr_delay"].std())
+            b
+          id: 3aa399b9-732f-47ff-a5a6-2f56e135a679
+          metadata: {}
+          sortingKey: m
+          type: code
+          executionCount: 16
+          outputs:
+            - data:
+                text/plain: np.float64(96.16196013770288)
+              execution_count: 16
+              output_type: execute_result
+              metadata:
+                cellId: 3aa399b9-732f-47ff-a5a6-2f56e135a679
+                cellIndex: 22
+        - blockGroup: 10935ebf-4e12-470d-bfbf-05a77cd0e7af
+          content: |-
+            c = b - a
+            c
+          id: 1d7dbcf9-c64f-4a54-85c3-8908997705c8
+          metadata: {}
+          sortingKey: 'n'
+          type: code
+          executionCount: 17
+          outputs:
+            - data:
+                text/plain: np.float64(178.53316676077597)
+              execution_count: 17
+              output_type: execute_result
+              metadata:
+                cellId: 1d7dbcf9-c64f-4a54-85c3-8908997705c8
+                cellIndex: 23
+        - blockGroup: 61690e77-4de6-4440-b38f-598897d19b30
+          content: |-
+            x = (df["arr_delay"].mean()) - (3 * df["arr_delay"].std())
+            x
+          id: 21e311b2-7e28-4302-a878-f14bc17c61c4
+          metadata: {}
+          sortingKey: o
+          type: code
+          executionCount: 18
+          outputs:
+            - data:
+                text/plain: np.float64(-127.00449831326708)
+              execution_count: 18
+              output_type: execute_result
+              metadata:
+                cellId: 21e311b2-7e28-4302-a878-f14bc17c61c4
+                cellIndex: 24
+        - blockGroup: 1e39d3ad-8ecd-41d1-bbd1-ec39112b0f60
+          content: |-
+            y = (df["arr_delay"].mean()) + (3 * df["arr_delay"].std())
+            y
+          id: 11d24364-ecd0-4d44-aed2-2923991dcd2f
+          metadata: {}
+          sortingKey: p
+          type: code
+          executionCount: 19
+          outputs:
+            - data:
+                text/plain: np.float64(140.79525182789686)
+              execution_count: 19
+              output_type: execute_result
+              metadata:
+                cellId: 11d24364-ecd0-4d44-aed2-2923991dcd2f
+                cellIndex: 25
+        - blockGroup: 4d8f5842-b93f-4078-b3c9-35adf58e9c0e
+          content: |-
+            z = y - x
+            z
+          id: 0db50f20-aafc-42ea-a427-6445155bc08e
+          metadata: {}
+          sortingKey: q
+          type: code
+          executionCount: 20
+          outputs:
+            - data:
+                text/plain: np.float64(267.79975014116394)
+              execution_count: 20
+              output_type: execute_result
+              metadata:
+                cellId: 0db50f20-aafc-42ea-a427-6445155bc08e
+                cellIndex: 26
+        - blockGroup: b49a57b0-833a-4928-bd02-b9cbac76254d
+          content: ''
+          id: 8757a6a2-dbb6-49ac-8ce7-a10b2b501ce7
+          metadata: {}
+          sortingKey: r
+          type: code
+          outputs: []
+      executionMode: block
+      id: 726e89d6-aa4c-43a7-b159-4412448524c4
+      isModule: false
+      name: descriptive
+  settings: {}
+version: 1.0.0
