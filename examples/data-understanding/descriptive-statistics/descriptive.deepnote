@@ -1,6 +1,6 @@
 metadata:
   createdAt: 2026-01-03T17:15:01.409Z
-  modifiedAt: '2026-01-03T17:16:31.083Z'
+  modifiedAt: '2026-01-03T17:16:39.435Z'
 project:
   id: 2228a7f0-badb-4af1-994a-ab146f587736
   integrations: []
@@ -19,6 +19,7 @@ project:
             import numpy as np
             from scipy import stats
             import os
+            import matplotlib
           id: bd018234-7125-4c0a-b15e-739a6447e6dc
           metadata: {}
           sortingKey: '1'
