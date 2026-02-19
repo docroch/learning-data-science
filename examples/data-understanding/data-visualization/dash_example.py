@@ -6,7 +6,7 @@ import os
 app = Dash(__name__)
 
 dataset = os.path.join("datasets", "EPA_fuel_economy_summary.csv")
-df = pd.read_csv("EPA_fuel_economy_summary.csv")
+df = pd.read_csv(dataset)
 
 fig = px.histogram(
     df,
