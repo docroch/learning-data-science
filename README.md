@@ -1,10 +1,8 @@
 # Learning Data Science
-Includes examples and docs for learning datascience
+Includes examples and datasets for learning datascience
 
 ## About
-In this repository, I have included documents and examples from different parts of the data science field.
-
-This tutorial is based on CRISP.
+In this repository, I have included datasets and examples from different parts of the data science field.
 
 You can clone this repository and use this.
 
