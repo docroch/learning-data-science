@@ -1,2 +1,3 @@
 .gitignore
 deep-learning/datasets/PetImages/
+/.venv/
